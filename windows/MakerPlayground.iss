@@ -1,5 +1,5 @@
 #define MyAppName "Maker Playground"
-#define MyAppVersion "0.3.0"
+#define MyAppVersion "0.3.1"
 #define MyAppPublisher "InGarage Assistive Technology Co.,Ltd."
 #define MyAppURL "www.makerplayground.io"
 #define MyAppExeName "makerplayground.exe"
