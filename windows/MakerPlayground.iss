@@ -1,5 +1,5 @@
 #define MyAppName "Maker Playground"
-#define MyAppVersion "0.3.1"
+#define MyAppVersion "0.4.0-beta4"
 #define MyAppPublisher "InGarage Assistive Technology Co.,Ltd."
 #define MyAppURL "www.makerplayground.io"
 #define MyAppExeName "makerplayground.exe"
@@ -18,6 +18,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={sd}\{#MyAppName}
 DisableProgramGroupPage=yes
 DisableWelcomePage=no
+ChangesAssociations=yes
 OutputBaseFilename=MakerPlayground-{#MyAppVersion}
 SetupIconFile=MakerPlayground.ico
 WizardSmallImageFile={#WizardSmallImagePath}\55.bmp,{#WizardSmallImagePath}\64.bmp,{#WizardSmallImagePath}\83.bmp,{#WizardSmallImagePath}\92.bmp, \
@@ -33,9 +34,11 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-
+Name: mpFileAssociation; Description: "Associate ""mp"" extension"; GroupDescription: File extensions:
+                                     
 [Files]
 Source: "makerplayground.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "mp.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\image\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "platformio\*"; DestDir: "{app}\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -65,3 +68,9 @@ Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: 
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: shellexec postinstall skipifsilent
+
+[Registry]
+Root: HKLM; Subkey: "Software\Classes\.mp"; ValueType: string; ValueName: ""; ValueData: "MakerPlayground"; Flags: uninsdeletevalue; Tasks: mpFileAssociation
+Root: HKLM; Subkey: "Software\Classes\MakerPlayground"; ValueType: string; ValueName: ""; ValueData: "Maker Playground"; Flags: uninsdeletekey; Tasks: mpFileAssociation
+Root: HKLM; Subkey: "Software\Classes\MakerPlayground\DefaultIcon"; ValueType: string; ValueName: ""; ValueData: "{app}\mp.ico,0"; Tasks: mpFileAssociation
+Root: HKLM; Subkey: "Software\Classes\MakerPlayground\shell\open\command"; ValueType: string; ValueName: ""; ValueData: """{app}\makerplayground.EXE"" ""%1"""; Tasks: mpFileAssociation
