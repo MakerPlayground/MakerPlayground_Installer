@@ -1,5 +1,6 @@
 #define MyAppName "Maker Playground"
-#define MyAppVersion "0.4.0-beta4"
+; MyAppVersion will be passed as an command line argument (/DMyAppVersion=...) 
+;#define MyAppVersion "2019.1"
 #define MyAppPublisher "InGarage Assistive Technology Co.,Ltd."
 #define MyAppURL "www.makerplayground.io"
 #define MyAppExeName "makerplayground.exe"
@@ -37,16 +38,23 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: mpFileAssociation; Description: "Associate ""mp"" extension"; GroupDescription: File extensions:
                                      
 [Files]
-Source: "makerplayground.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "mp.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\image\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "MakerPlayground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "platformio\*"; DestDir: "{app}\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "python-2.7.13\*"; DestDir: "{app}\python-2.7.13"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-; Prior to version 0.3, Maker Playgound creates and stores python at ~\.makerplayground so we delete this folder automatically
 [InstallDelete]
+; Prior to version 0.3, Maker Playgound creates and stores python at ~\.makerplayground so we delete this folder automatically
 Type: filesandordirs; Name: "{%USERPROFILE}\.makerplayground"
+; remove file from previous installation  
+Type: filesandordirs; Name: "{app}\*.exe"
+Type: filesandordirs; Name: "{app}\*.ico"
+Type: filesandordirs; Name: "{app}\*.dll"
+Type: filesandordirs; Name: "{app}\*.dat"
+Type: filesandordirs; Name: "{app}\library"
+Type: filesandordirs; Name: "{app}\platformio"
+Type: filesandordirs; Name: "{app}\python-2.7.13"
 
 ; Prior to version 0.3, Maker Playgound extracts file required by platformio at ~\.platformio. However, some users may have installed platformio
 ; by themselves ealier and thus have this folder in their PC so we ask for user confirmation before we delete this folder
