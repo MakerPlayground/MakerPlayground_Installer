@@ -1,6 +1,6 @@
 #define MyAppName "Maker Playground"
 ; MyAppVersion will be passed as an command line argument (/DMyAppVersion=...) 
-;#define MyAppVersion "2019.1"
+; #define MyAppVersion ""
 #define MyAppPublisher "InGarage Assistive Technology Co.,Ltd."
 #define MyAppURL "www.makerplayground.io"
 #define MyAppExeName "makerplayground.exe"
@@ -39,22 +39,30 @@ Name: mpFileAssociation; Description: "Associate ""mp"" extension"; GroupDescrip
                                      
 [Files]
 Source: "mp.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "MakerPlayground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "platformio\*"; DestDir: "{app}\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "python-2.7.13\*"; DestDir: "{app}\python-2.7.13"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\..\build\native-image\makerplayground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\..\library\*"; DestDir: "{app}\app\library"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "platformio\*"; DestDir: "{app}\app\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "python-2.7.13\*"; DestDir: "{app}\app\python-2.7.13"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [InstallDelete]
 ; Prior to version 0.3, Maker Playgound creates and stores python at ~\.makerplayground so we delete this folder automatically
 Type: filesandordirs; Name: "{%USERPROFILE}\.makerplayground"
-; remove file from previous installation  
+; remove file/folder from previous installation (<=2019.1)
 Type: filesandordirs; Name: "{app}\*.exe"
 Type: filesandordirs; Name: "{app}\*.ico"
 Type: filesandordirs; Name: "{app}\*.dll"
 Type: filesandordirs; Name: "{app}\*.dat"
+Type: filesandordirs; Name: "{app}\release"
+Type: filesandordirs; Name: "{app}\bin"
+Type: filesandordirs; Name: "{app}\conf"
+Type: filesandordirs; Name: "{app}\legal"
+Type: filesandordirs; Name: "{app}\lib"
 Type: filesandordirs; Name: "{app}\library"
 Type: filesandordirs; Name: "{app}\platformio"
 Type: filesandordirs; Name: "{app}\python-2.7.13"
+; remove file/folder from previous installation (>2019.1)
+Type: filesandordirs; Name: "{app}\app"
+Type: filesandordirs; Name: "{app}\runtime"
 
 ; Prior to version 0.3, Maker Playgound extracts file required by platformio at ~\.platformio. However, some users may have installed platformio
 ; by themselves ealier and thus have this folder in their PC so we ask for user confirmation before we delete this folder
