@@ -2,4 +2,4 @@
 /library
 /platformio
 /build
-MakerPlayground.app
+*.app

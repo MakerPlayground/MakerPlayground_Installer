@@ -21,24 +21,12 @@
 							<key>CHILDREN</key>
 							<array>
 								<dict>
-									<key>BUNDLE_CAN_DOWNGRADE</key>
-									<false/>
-									<key>BUNDLE_POSTINSTALL_PATH</key>
-									<dict>
-										<key>PATH_TYPE</key>
-										<integer>0</integer>
-									</dict>
-									<key>BUNDLE_PREINSTALL_PATH</key>
-									<dict>
-										<key>PATH_TYPE</key>
-										<integer>0</integer>
-									</dict>
 									<key>CHILDREN</key>
 									<array/>
 									<key>GID</key>
 									<integer>80</integer>
 									<key>PATH</key>
-									<string>MakerPlayground.app</string>
+									<string>Maker Playground.app</string>
 									<key>PATH_TYPE</key>
 									<integer>1</integer>
 									<key>PERMISSIONS</key>
@@ -550,7 +538,7 @@
 				<key>USE_HFS+_COMPRESSION</key>
 				<false/>
 				<key>VERSION</key>
-				<string>0.3.1</string>
+				<string>${MP_BUILD_VERSION}</string>
 			</dict>
 			<key>TYPE</key>
 			<integer>0</integer>
@@ -900,7 +888,7 @@
 				</dict>
 			</array>
 			<key>NAME</key>
-			<string>MakerPlayground-0.3.1</string>
+			<string>MakerPlayground-${MP_BUILD_VERSION}</string>
 			<key>PAYLOAD_ONLY</key>
 			<false/>
 			<key>TREAT_MISSING_PRESENTATION_DOCUMENTS_AS_WARNING</key>
