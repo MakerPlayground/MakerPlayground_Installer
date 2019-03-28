@@ -19,6 +19,7 @@ sudo /usr/bin/python -c "$(curl -fsSL https://raw.githubusercontent.com/platform
 cd testproject
 /usr/bin/python -m platformio run --target upload
 cd ../
+chmod -R 777 platformio
 
 # signed the app bundle
 codesign --deep --force --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app
