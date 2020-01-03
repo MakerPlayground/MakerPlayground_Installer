@@ -21,3 +21,6 @@ cd ..\
 
 :: invoke innosetup to create the installer
 iscc /Qp /DMyAppVersion=%1 MakerPlayground.iss
+iscc /Qp /DMyAppVersion=%1 MakerPlayground_Minimal.iss
+iscc /Qp /DMyAppVersion=%1 MakerPlayground_Update.iss
+iscc /Qp /DMyAppVersion=%1 MakerPlayground_Library.iss

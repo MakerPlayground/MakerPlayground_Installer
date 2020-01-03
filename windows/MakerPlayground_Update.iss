@@ -1,3 +1,8 @@
+; This is a minimal installer without the integrated python and platformio library
+; Changes from MakerPlayground.iss
+;   - remove line #45-47, 69
+;   - add CreateUninstallRegKey=no and UpdateUninstallLogAppName=no
+
 #define MyAppName "Maker Playground"
 ; MyAppVersion will be passed as an command line argument (/DMyAppVersion=...) 
 ; #define MyAppVersion ""
@@ -20,9 +25,13 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 DisableWelcomePage=no
 ChangesAssociations=yes
-OutputBaseFilename=MakerPlayground-{#MyAppVersion}
+OutputBaseFilename=MakerPlayground-{#MyAppVersion}-update
 SetupIconFile=MakerPlayground.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
+; don't create new entry in Add/Remove Programs Control Panel (http://www.jrsoftware.org/iskb.php?updateinstall)
+CreateUninstallRegKey=no
+UpdateUninstallLogAppName=no
+
 WizardSmallImageFile={#WizardSmallImagePath}\55.bmp,{#WizardSmallImagePath}\64.bmp,{#WizardSmallImagePath}\83.bmp,{#WizardSmallImagePath}\92.bmp, \
                 {#WizardSmallImagePath}\110.bmp,{#WizardSmallImagePath}\119.bmp,{#WizardSmallImagePath}\138.bmp
 WizardImageFile={#WizardImagePath}\164.bmp,{#WizardImagePath}\192.bmp,{#WizardImagePath}\246.bmp,{#WizardImagePath}\273.bmp, \
@@ -42,9 +51,9 @@ Name: mpFileAssociation; Description: "Associate ""mp"" extension"; GroupDescrip
 Source: "mp.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\build\native-image\makerplayground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-Source: "..\..\library\*"; DestDir: "{autoappdata}\Maker Playground\library"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "platformio\*"; DestDir: "{autoappdata}\Maker Playground\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "python-2.7.13\*"; DestDir: "{autoappdata}\Maker Playground\python-2.7.13"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "..\..\library\*"; DestDir: "{autoappdata}\Maker Playground\library"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "platformio\*"; DestDir: "{autoappdata}\Maker Playground\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs
+; Source: "python-2.7.13\*"; DestDir: "{autoappdata}\Maker Playground\python-2.7.13"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [InstallDelete]
 ; Prior to version 0.3, Maker Playgound creates and stores python at ~\.makerplayground so we delete this folder automatically
@@ -66,7 +75,7 @@ Type: filesandordirs; Name: "{app}\python-2.7.13"
 Type: filesandordirs; Name: "{app}\app"
 Type: filesandordirs; Name: "{app}\runtime"
 ; remove file/folder from previous installation (>0.5.0)
-Type: filesandordirs; Name: "{autoappdata}\Maker Playground"
+; Type: filesandordirs; Name: "{autoappdata}\Maker Playground"
 
 ; Prior to version 0.3, Maker Playgound extracts file required by platformio at ~\.platformio. However, some users may have installed platformio
 ; by themselves ealier and thus have this folder in their PC so we ask for user confirmation before we delete this folder
