@@ -3,7 +3,7 @@
 ; #define MyAppVersion ""
 #define MyAppPublisher "InGarage Assistive Technology Co.,Ltd."
 #define MyAppURL "www.makerplayground.io"
-#define MyAppExeName "makerplayground.exe"
+#define MyAppExeName "Maker Playground.exe"
 #define WizardImagePath ".\assets\wizardimagefile"
 #define WizardSmallImagePath ".\assets\wizardsmallimagefile"
 
@@ -21,7 +21,7 @@ DisableProgramGroupPage=yes
 DisableWelcomePage=no
 ChangesAssociations=yes
 OutputBaseFilename=MakerPlayground-{#MyAppVersion}
-SetupIconFile=MakerPlayground.ico
+SetupIconFile=assets\Maker Playground.ico
 WizardSmallImageFile={#WizardSmallImagePath}\55.bmp,{#WizardSmallImagePath}\64.bmp,{#WizardSmallImagePath}\83.bmp,{#WizardSmallImagePath}\92.bmp, \
                 {#WizardSmallImagePath}\110.bmp,{#WizardSmallImagePath}\119.bmp,{#WizardSmallImagePath}\138.bmp
 WizardImageFile={#WizardImagePath}\164.bmp,{#WizardImagePath}\192.bmp,{#WizardImagePath}\246.bmp,{#WizardImagePath}\273.bmp, \
@@ -38,8 +38,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: mpFileAssociation; Description: "Associate ""mp"" extension"; GroupDescription: File extensions:
                                      
 [Files]
-Source: "mp.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\..\build\native-image\makerplayground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "assets\mp.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\..\build\jpackage\Maker Playground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\..\library\*"; DestDir: "{app}\app\library"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "platformio\*"; DestDir: "{app}\app\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "python-2.7.13\*"; DestDir: "{app}\app\python-2.7.13"; Flags: ignoreversion recursesubdirs createallsubdirs
@@ -63,6 +63,8 @@ Type: filesandordirs; Name: "{app}\python-2.7.13"
 ; remove file/folder from previous installation (>2019.1)
 Type: filesandordirs; Name: "{app}\app"
 Type: filesandordirs; Name: "{app}\runtime"
+; remove file/folder from previous installation (>0.6.0)
+Type: filesandordirs; Name: "{app}\.jpackage"
 
 ; Prior to version 0.3, Maker Playgound extracts file required by platformio at ~\.platformio. However, some users may have installed platformio
 ; by themselves ealier and thus have this folder in their PC so we ask for user confirmation before we delete this folder
