@@ -13,11 +13,11 @@ hdiutil detach /Volumes/Packages\ 1.2.7
 rm Packages.dmg
 
 # install platformio
-sudo /usr/bin/python -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/develop/scripts/get-platformio.py)"
+python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/develop/scripts/get-platformio.py)"
 
 # generate platformio dependency
 cd testproject
-/usr/bin/python -m platformio run --target upload
+~/.platformio/penv/bin/platformio run --target upload
 cd ../
 chmod -R 777 platformio
 
