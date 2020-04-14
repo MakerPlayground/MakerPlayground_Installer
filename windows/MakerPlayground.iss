@@ -27,8 +27,6 @@ WizardSmallImageFile={#WizardSmallImagePath}\55.bmp,{#WizardSmallImagePath}\64.b
 WizardImageFile={#WizardImagePath}\164.bmp,{#WizardImagePath}\192.bmp,{#WizardImagePath}\246.bmp,{#WizardImagePath}\273.bmp, \
                 {#WizardImagePath}\328.bmp,{#WizardImagePath}\355.bmp,{#WizardImagePath}\410.bmp
 SolidCompression=yes
-ArchitecturesAllowed=x64
-ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
