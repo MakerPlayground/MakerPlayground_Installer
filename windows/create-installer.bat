@@ -3,20 +3,20 @@
 if [%1]==[] exit /b 1
 
 :: download WinPython
-curl -L https://github.com/winpython/winpython/releases/download/1.7.20170401/WinPython-32bit-2.7.13.1Zero.exe --output WinPython-32bit-2.7.13.1Zero.exe
+curl -L https://github.com/winpython/winpython/releases/download/2.3.20200319/Winpython32-3.7.7.0dot.exe --output Winpython32-3.7.7.0dot.exe
 
 :: extract WinPython
-start /WAIT WinPython-32bit-2.7.13.1Zero.exe /S
-del WinPython-32bit-2.7.13.1Zero.exe
-move WinPython-32bit-2.7.13.1Zero\python-2.7.13 .\python-2.7.13
-rmdir /s /q WinPython-32bit-2.7.13.1Zero
+start /WAIT Winpython32-3.7.7.0dot.exe -y
+del Winpython32-3.7.7.0dot.exe
+move WPy32-3770\python-3.7.7 .\python-3.7.7
+rmdir /s /q WPy32-3770
 
 :: install platformio
-python-2.7.13\python.exe -m pip install platformio
+python-3.7.7\python.exe -m pip install platformio
 
 :: install platformio dependencies (compilers, upload tools etc.)
 cd testproject
-..\python-2.7.13\python.exe -m platformio run --target upload
+..\python-3.7.7\python.exe -m platformio run --target upload
 cd ..\
 
 :: invoke innosetup to create the installer
