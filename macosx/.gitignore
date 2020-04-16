@@ -3,3 +3,4 @@
 /platformio
 /build
 *.app
+get-platformio.py
