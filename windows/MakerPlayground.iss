@@ -16,12 +16,13 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={sd}\{#MyAppName}
+DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 DisableWelcomePage=no
 ChangesAssociations=yes
 OutputBaseFilename=MakerPlayground-{#MyAppVersion}
 SetupIconFile=assets\Maker Playground.ico
+UninstallDisplayIcon={app}\{#MyAppExeName}
 WizardSmallImageFile={#WizardSmallImagePath}\55.bmp,{#WizardSmallImagePath}\64.bmp,{#WizardSmallImagePath}\83.bmp,{#WizardSmallImagePath}\92.bmp, \
                 {#WizardSmallImagePath}\110.bmp,{#WizardSmallImagePath}\119.bmp,{#WizardSmallImagePath}\138.bmp
 WizardImageFile={#WizardImagePath}\164.bmp,{#WizardImagePath}\192.bmp,{#WizardImagePath}\246.bmp,{#WizardImagePath}\273.bmp, \
@@ -34,13 +35,16 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: mpFileAssociation; Description: "Associate ""mp"" extension"; GroupDescription: File extensions:
-                                     
+
+[Dirs]
+Name: "{app}\dependencies"; Permissions: everyone-modify
+
 [Files]
 Source: "assets\mp.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\..\build\jpackage\Maker Playground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\..\library\*"; DestDir: "{app}\library"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "platformio\*"; DestDir: "{app}\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "python-3.7.7\*"; DestDir: "{app}\python-3.7.7"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\..\library\*"; DestDir: "{app}\dependencies\library"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify
+Source: "platformio\*"; DestDir: "{app}\dependencies\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify
+Source: "python-3.7.7\*"; DestDir: "{app}\dependencies\python-3.7.7"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify
 
 [InstallDelete]
 ; Prior to version 0.3, Maker Playgound creates and stores python at ~\.makerplayground so we delete this folder automatically
@@ -61,9 +65,9 @@ Type: filesandordirs; Name: "{app}\python-2.7.13"
 ; remove file/folder from previous installation (>2019.1)
 Type: filesandordirs; Name: "{app}\app"
 Type: filesandordirs; Name: "{app}\runtime"
-; remove file/folder from previous installation (>0.6.0)
+; remove file/folder from previous installation (>=0.6.0)
 Type: filesandordirs; Name: "{app}\.jpackage"
-Type: filesandordirs; Name: "{app}\python-3.7.7"
+Type: filesandordirs; Name: "{app}\dependencies"
 
 ; Prior to version 0.3, Maker Playgound extracts file required by platformio at ~\.platformio. However, some users may have installed platformio
 ; by themselves ealier and thus have this folder in their PC so we ask for user confirmation before we delete this folder
@@ -80,8 +84,8 @@ begin
 end;
 
 [Icons]
-Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: shellexec postinstall skipifsilent
