@@ -252,6 +252,7 @@ notarize_req_uid=$(xcrun altool --notarize-app \
     -f MakerPlayground-$1.pkg \
     --primary-bundle-id io.makerplayground \
     --username palmnuntipat@hotmail.com --password @env:APPLE_ID_PASSWORD \
+    --asc-provider 8YJDH97D29 \
     | grep RequestUUID | awk '{print $3}')
 echo "RequestUUID = $notarize_req_uid"
 
