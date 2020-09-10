@@ -306,8 +306,10 @@ do
         break
     elif [[ "$notarize_status" == *"Status: in progress"* ]]; then
         sleep 60
-    else
+    elif [[ "$notarize_status" == *"Status: invalid"* ]]; then
         exit 1
+    else
+        sleep 60
     fi
 done
 
