@@ -311,10 +311,9 @@ do
     fi
 done
 
-echo "Staple notarization ticket to the application bundle"
-xcrun stapler staple -v Maker\ Playground.app
-
 echo "Staple notarization ticket to the application installer"
 xcrun stapler staple -v MakerPlayground-$1.pkg
 
 cd ../
+echo "Staple notarization ticket to the application bundle"
+xcrun stapler staple -v Maker\ Playground.app
