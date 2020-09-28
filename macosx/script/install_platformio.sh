@@ -24,3 +24,7 @@ else
   fi
 fi
 
+unzip ampy.zip
+cd ampy
+~/.platformio/penv/bin/python setup.py install
+cd ../

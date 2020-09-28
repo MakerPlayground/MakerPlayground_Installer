@@ -22,6 +22,10 @@ else
   python get-platformio.py
 fi
 
+# download ampy
+git clone https://github.com/scientifichackers/ampy.git
+zip -r ampy.zip ampy
+
 # generate platformio dependency
 cd testproject
 ~/.platformio/penv/bin/platformio run --target upload
