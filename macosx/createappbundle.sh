@@ -216,6 +216,7 @@ codesign --deep --force --timestamp --options runtime --entitlements entitlement
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/7.2.1/plugin/libcp1plugin.0.so
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/7.2.1/install-tools/fixincl
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" platformio/packages/tool-bossac/bossac
+codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" platformio/packages/tool-bossac@1.10700.190624/bossac
 
 # signed the app bundle
 cd Maker\ Playground.app/Contents/app/mods
