@@ -19,5 +19,14 @@ cd testproject
 ..\python-3.7.7\python.exe -m platformio run --target upload
 cd ..\
 
+:: download ampy
+git clone https://github.com/scientifichackers/ampy.git
+
+:: install ampy
+cd ampy
+..\python-3.7.7\python.exe setup.py install
+cd ..\
+rmdir /s /q ampy
+
 :: invoke innosetup to create the installer
 iscc /Qp /DMyAppVersion=%1 MakerPlayground.iss
