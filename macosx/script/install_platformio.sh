@@ -24,7 +24,14 @@ else
   fi
 fi
 
+# install ampy
 unzip ampy.zip
 cd ampy
 ~/.platformio/penv/bin/python setup.py install
 cd ../
+
+# install esptool
+~/.platformio/penv/bin/pip install esptool
+
+# install kflash
+~/.platformio/penv/bin/pip install pyserial pyelftools kflash

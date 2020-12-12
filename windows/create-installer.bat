@@ -28,5 +28,11 @@ cd ampy
 cd ..\
 rmdir /s /q ampy
 
+:: install esptool
+python-3.7.7\python.exe -m pip install esptool
+
+:: install kflash
+python-3.7.7\python.exe -m pip install pyserial pyelftools kflash
+
 :: invoke innosetup to create the installer
 iscc /Qp /DMyAppVersion=%1 MakerPlayground.iss
