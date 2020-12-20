@@ -2,6 +2,8 @@
 /library
 /platformio
 /build
+/ampy
 *.app
 get-platformio.py
 ampy.zip
+platformio.tar.gz

@@ -13,7 +13,7 @@ hdiutil detach /Volumes/Packages\ 1.2.9
 rm Packages.dmg
 
 # install platformio core if it isn't exist
-curl -fsSL https://raw.githubusercontent.com/platformio/platformio/develop/scripts/get-platformio.py --output get-platformio.py
+curl -fsSL https://raw.githubusercontent.com/platformio/platformio-core-installer/master/get-platformio.py --output get-platformio.py
 python get-platformio.py check core
 if [ $? -eq 0 ]; then
   echo "Skip platformio core installation"
@@ -217,6 +217,8 @@ codesign --deep --force --timestamp --options runtime --entitlements entitlement
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" platformio/packages/toolchain-gccarmnoneeabi/lib/gcc/arm-none-eabi/7.2.1/install-tools/fixincl
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" platformio/packages/tool-bossac/bossac
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" platformio/packages/tool-bossac@1.10700.190624/bossac
+
+tar -czf platformio.tar.gz platformio
 
 # signed the app bundle
 cd Maker\ Playground.app/Contents/app/mods
