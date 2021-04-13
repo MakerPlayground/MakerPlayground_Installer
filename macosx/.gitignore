@@ -1,6 +1,7 @@
 /image
 /library
 /platformio
+/python-portable-darwin_x86_64
 /build
 /ampy
 *.app

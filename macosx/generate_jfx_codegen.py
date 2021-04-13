@@ -15,4 +15,4 @@ for error in errors['issues']:
 
 path = ['Maker\ Playground.app/' + p.split('Maker Playground.app/')[1] for p in path]
 for p in path:
-    print ('codesign --deep --force --timestamp --options runtime --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" ' + p)
+    print ('codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" ' + p)

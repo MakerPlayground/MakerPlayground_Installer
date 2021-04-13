@@ -15,4 +15,4 @@ for error in errors['issues']:
 
 path = ['platformio/' + p.split('platformio/')[1] for p in path]
 for p in path:
-    print ('codesign --deep --force --timestamp --options runtime -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" ' + p)
+    print ('codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt -vvv --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" ' + p)
