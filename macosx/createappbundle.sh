@@ -315,19 +315,26 @@ spctl -vvv --assess --type exec Maker\ Playground.app
 
 # replace the version number in packages project file
 sed -i '' "s/\${MP_BUILD_VERSION}/$1/g" MakerPlayground_Installer.pkgproj
+sed -i '' "s/\${MP_BUILD_VERSION}/$1/g" MakerPlayground_Full_Installer.pkgproj
 
 # build the pkg installer
 packagesbuild MakerPlayground_Installer.pkgproj
+packagesbuild MakerPlayground_Full_Installer.pkgproj
 
 # sign the pkg installer
 cd build
 productsign --sign "Developer ID Installer: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED (8YJDH97D29)" MakerPlayground-$1.pkg MakerPlayground-$1-signed.pkg
+productsign --sign "Developer ID Installer: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED (8YJDH97D29)" MakerPlayground-Full-$1.pkg MakerPlayground-Full-$1-signed.pkg
 mv MakerPlayground-$1-signed.pkg MakerPlayground-$1.pkg
+mv MakerPlayground-Full-$1-signed.pkg MakerPlayground-Full-$1.pkg
+
+# pack both pkg installers for notarization
+zip -r MakerPlayground-$1.zip MakerPlayground-$1.pkg MakerPlayground-Full-$1.pkg
 
 # notarization the installer
 echo "Get notarization request uuid..."
 notarize_req_uid=$(xcrun altool --notarize-app \
-   -f MakerPlayground-$1.pkg \
+   -f MakerPlayground-$1.zip \
    --primary-bundle-id io.makerplayground \
    --username palmnuntipat@hotmail.com --password @env:APPLE_ID_PASSWORD \
    --asc-provider 8YJDH97D29 \
@@ -353,6 +360,7 @@ done
 
 echo "Staple notarization ticket to the application installer"
 xcrun stapler staple -v MakerPlayground-$1.pkg
+xcrun stapler staple -v MakerPlayground-Full-$1.pkg
 
 cd ../
 echo "Staple notarization ticket to the application bundle"
