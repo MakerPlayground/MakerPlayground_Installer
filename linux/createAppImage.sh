@@ -22,3 +22,6 @@ cd ../
 # create tar archive as an alternative distribution format
 mv Maker\ Playground/ MakerPlayground-$1/
 tar -czf MakerPlayground-$1.tar.gz MakerPlayground-$1/
+
+# cleanup
+rm appimagetool-x86_64.AppImage
