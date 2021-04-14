@@ -20,7 +20,7 @@ DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 DisableWelcomePage=no
 ChangesAssociations=yes
-OutputBaseFilename=MakerPlayground-{#MyAppVersion}
+OutputBaseFilename=MakerPlayground-Full-{#MyAppVersion}
 SetupIconFile=assets\Maker Playground.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 WizardSmallImageFile={#WizardSmallImagePath}\55.bmp,{#WizardSmallImagePath}\64.bmp,{#WizardSmallImagePath}\83.bmp,{#WizardSmallImagePath}\92.bmp, \
@@ -42,13 +42,13 @@ Name: "{app}\dependencies"; Permissions: everyone-modify
 [Components]
 Name: "makerplayground"; Description: "Maker Playground"; Types: full compact custom; Flags: fixed
 Name: "python"; Description: "Integrated Python Interpreter + Toolchains"; Types: full compact custom
-; Name: "platformio"; Description: "PlatformIO's Development Platforms (for offline usage)"; Types: full
+Name: "platformio"; Description: "PlatformIO's Development Platforms (for offline usage)"; Types: full
 
 [Files]
 Source: "assets\mp.ico"; DestDir: "{app}"; Flags: ignoreversion; Components: makerplayground
 Source: "..\..\build\jpackage\Maker Playground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: makerplayground
 Source: "..\..\library\*"; DestDir: "{app}\dependencies\library"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify; Components: makerplayground
-; Source: "platformio\*"; DestDir: "{app}\dependencies\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify; Components: platformio
+Source: "platformio\*"; DestDir: "{app}\dependencies\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify; Components: platformio
 Source: "python-3.7.7\*"; DestDir: "{app}\dependencies\python-3.7.7"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify; Components: python
 
 [InstallDelete]
