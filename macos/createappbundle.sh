@@ -340,6 +340,10 @@ notarize_req_uid=$(xcrun altool --notarize-app \
    --asc-provider 8YJDH97D29 \
    | grep RequestUUID | awk '{print $3}')
 echo "RequestUUID = $notarize_req_uid"
+if [ -z "$notarize_req_uid" ]; then
+    echo "Error: Can't submit bundle and retrieve notarization request uuid"
+    exit 1
+fi
 
 echo "Poll the server every minute until success..."
 while :
