@@ -317,6 +317,9 @@ spctl -vvv --assess --type exec Maker\ Playground.app
 sed -i '' "s/\${MP_BUILD_VERSION}/$1/g" MakerPlayground_Installer.pkgproj
 sed -i '' "s/\${MP_BUILD_VERSION}/$1/g" MakerPlayground_Full_Installer.pkgproj
 
+# copy the library directory (excluding *.ai, *.svg, and other unnecessary files)
+rsync -az --exclude='.git*' --exclude='.vscode' --exclude='/build.py' --exclude='*.ai' --exclude='*.svg' ../../library/ ./library
+
 # build the pkg installer
 packagesbuild MakerPlayground_Installer.pkgproj
 packagesbuild MakerPlayground_Full_Installer.pkgproj

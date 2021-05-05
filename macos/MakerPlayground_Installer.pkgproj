@@ -65,11 +65,11 @@
 													<key>GID</key>
 													<integer>80</integer>
 													<key>PATH</key>
-													<string>../../library</string>
+													<string>library</string>
 													<key>PATH_TYPE</key>
 													<integer>1</integer>
 													<key>PERMISSIONS</key>
-													<integer>509</integer>
+													<integer>493</integer>
 													<key>TYPE</key>
 													<integer>3</integer>
 													<key>UID</key>

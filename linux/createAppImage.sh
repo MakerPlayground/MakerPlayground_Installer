@@ -12,7 +12,7 @@ chmod a+x appimagetool-x86_64.AppImage
 # copy all resources by following AppDir format (https://docs.appimage.org/packaging-guide/manual.html)
 cd Maker\ Playground
 cp ../assets/* ./
-cp -r ../../../library ./
+rsync -az --exclude='.git*' --exclude='.vscode' --exclude='/build.py' --exclude='*.ai' --exclude='*.svg' ../../../library/ ./library
 ln -s bin/Maker\ Playground AppRun
 cd ../
 

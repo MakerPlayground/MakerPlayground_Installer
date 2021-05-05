@@ -47,7 +47,7 @@ Name: "python"; Description: "Integrated Python Interpreter + Toolchains"; Types
 [Files]
 Source: "assets\mp.ico"; DestDir: "{app}"; Flags: ignoreversion; Components: makerplayground
 Source: "..\..\build\jpackage\Maker Playground\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Components: makerplayground
-Source: "..\..\library\*"; DestDir: "{app}\dependencies\library"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify; Components: makerplayground
+Source: "..\..\library\*"; Excludes: "*.ai,*.svg,\.git*,.git,.vscode,\build.py"; DestDir: "{app}\dependencies\library"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify; Components: makerplayground
 ; Source: "platformio\*"; DestDir: "{app}\dependencies\platformio"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify; Components: platformio
 Source: "python-3.7.7\*"; DestDir: "{app}\dependencies\python-3.7.7"; Flags: ignoreversion recursesubdirs createallsubdirs; Permissions: everyone-modify; Components: python
 
