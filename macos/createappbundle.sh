@@ -13,11 +13,11 @@ hdiutil detach /Volumes/Packages\ 1.2.9
 rm Packages.dmg
 
 # install python, neccessary build tools (esp32 (micropython) and k210) and platformio
-curl https://dl.registry.platformio.org/download/platformio/tool/python-portable/1.30909.0/python-portable-darwin_x86_64-1.30909.0.tar.gz -L --output python-portable-darwin_x86_64.tar.gz
+curl -O https://makerplayground.blob.core.windows.net/tool/macos/python-portable-darwin_x86_64.tar.gz
 mkdir python-portable-darwin_x86_64
 tar -xf python-portable-darwin_x86_64.tar.gz -C python-portable-darwin_x86_64
 rm python-portable-darwin_x86_64.tar.gz
-python-portable-darwin_x86_64/bin/python3.9 -m pip install platformio esptool pyserial pyelftools kflash
+python-portable-darwin_x86_64/bin/python3.9 -m pip install --upgrade platformio esptool pyserial pyelftools kflash
 
 # download ampy
 git clone https://github.com/scientifichackers/ampy.git
