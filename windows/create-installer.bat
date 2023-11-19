@@ -15,8 +15,10 @@ rmdir /s /q WPy32-3770
 python-3.7.7\python.exe -m pip install platformio
 
 :: install platformio dependencies (compilers, upload tools etc.)
+CALL :NORMALIZEPATH "..\..\..\..\platformio"
+set PLATFORMIO_CORE_DIR=%RETVAL%
 cd testproject
-..\python-3.7.7\python.exe -m platformio run --target upload
+..\python-3.7.7\python.exe -m platformio run
 cd ..\
 
 :: download ampy
@@ -36,4 +38,10 @@ python-3.7.7\python.exe -m pip install pyserial pyelftools kflash
 
 :: invoke innosetup to create the installer
 iscc /Qp /DMyAppVersion=%1 MakerPlayground.iss
-iscc /Qp /DMyAppVersion=%1 MakerPlayground-Full.iss
+iscc /Qp /DMyAppVersion=%1 /DPIOCoreDir=%PLATFORMIO_CORE_DIR% MakerPlayground-Full.iss
+
+EXIT /B %ERRORLEVEL%
+
+:NORMALIZEPATH
+  SET RETVAL=%~f1
+  EXIT /B
