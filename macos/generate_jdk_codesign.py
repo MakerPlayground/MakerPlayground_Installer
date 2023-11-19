@@ -3,14 +3,14 @@ import sys
 import urllib.request
 
 if len(sys.argv) != 2:
-    print ('Usage: python generate_pio_codesign.py <url from Apple Notarization Server>')
+    print ('Usage: python generate_pio_codesign.py <log.json>')
 
-response = urllib.request.urlopen(sys.argv[1])
+with open(sys.argv[1]) as fp:
+    errors = json.load(fp)
 
 path = []
-errors = json.loads(response.read())
 for error in errors['issues']:
-    if error['path'] not in path:
+    if (error['severity'] == 'error') and (error['path'] not in path) and ('Maker Playground.app' in error['path']):
         path.append(error['path'])
 
 path = ['Maker\ Playground.app/' + p.split('Maker Playground.app/')[1] for p in path]
