@@ -176,4 +176,4 @@ echo "Staple notarization ticket to the application bundle"
 xcrun stapler staple -v Maker\ Playground.app
 
 # distribute final app bundle as zip archive as GitHub release doesn't support directory as release artifact
-ditto -c -k --keepParent Maker\ Playground.app build/Maker\ Playground.app.zip
+ditto -c -k --keepParent Maker\ Playground.app build/MakerPlayground-$1.app.zip
