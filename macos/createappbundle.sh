@@ -137,6 +137,8 @@ codesign --deep --force --timestamp --options runtime --entitlements entitlement
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app/Contents/runtime/Contents/Home/lib/libawt.dylib
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app/Contents/runtime/Contents/Home/lib/libosx.dylib
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app/Contents/runtime/Contents/Home/lib/libosxapp.dylib
+codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app/Contents/runtime/Contents/Home/lib/simengine
+codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app/Contents/runtime/Contents/Home/lib/pauseengine
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app/Contents/runtime/Contents/Home/lib/server/libjvm.dylib
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app/Contents/runtime/Contents/Home/lib/server/libjsig.dylib
 codesign --deep --force --timestamp --options runtime --entitlements entitlements.txt --verbose --sign "Developer ID Application: INGARAGE ASSISTIVE TECHNOLOGY COMPANY LIMITED" Maker\ Playground.app/Contents/MacOS/Maker\ Playground
@@ -170,10 +172,18 @@ fi
 
 echo "Staple notarization ticket to the application installer"
 xcrun stapler staple -v MakerPlayground-$1.pkg
+if [ $? -ne 0 ]; then
+    echo "Error: Can't staple notarization ticket to the application installer"
+    exit 1
+fi
 
 cd ../
 echo "Staple notarization ticket to the application bundle"
 xcrun stapler staple -v Maker\ Playground.app
+if [ $? -ne 0 ]; then
+    echo "Error: Can't staple notarization ticket to the application bundle"
+    exit 1
+fi
 
 # distribute final app bundle as zip archive as GitHub release doesn't support directory as release artifact
 ditto -c -k --keepParent Maker\ Playground.app build/MakerPlayground-$1.app.zip
